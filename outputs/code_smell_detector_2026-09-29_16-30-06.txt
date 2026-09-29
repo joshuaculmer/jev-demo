@@ -1,0 +1,182 @@
+=== Request 1 ===
+{
+  "state": {
+    "filename": "order_processor.py",
+    "code": "import os\nimport json\n\nDB_PASSWORD = \"hunter2\"\norders = []\ntotal = 0\n\n\ndef process(d, flag, c, x, y, z, items=[]):\n    global total\n    # loop through the items\n    for i in d[\"items\"]:\n        if i[\"qty\"] > 0:\n            if flag:\n                if i[\"price\"] > 100:\n                    p = i[\"price\"] * i[\"qty\"] * 0.9\n                    if c == \"US\":\n                        p = p * 1.07\n                    else:\n                        p = p * 1.2\n                else:\n                    p = i[\"price\"] * i[\"qty\"]\n                    if c == \"US\":\n                        p = p * 1.07\n                    else:\n                        p = p * 1.2\n            else:\n                p = i[\"price\"] * i[\"qty\"]\n                if c == \"US\":\n                    p = p * 1.07\n                else:\n                    p = p * 1.2\n            total = total + p  # add p to total\n            items.append(i)\n    orders.append(d)\n    try:\n        f = open(\"C:/data/orders.json\", \"w\")\n        f.write(json.dumps(orders))\n    except:\n        pass\n    if total > 0:\n        return total\n    # old version\n    # for i in d[\"items\"]:\n    #     total += i[\"price\"]\n\n\ndef calc_discount(order):\n    print(\"calculating discount\")\n    open(\"C:/data/log.txt\", \"a\").write(\"discount\\n\")\n    return order[\"price\"] * 0.1\n"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Long function": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Long function', meaning a function or method that does too much and runs well past what fits on one screen?"
+    },
+    "Duplicated code": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Duplicated code', meaning the same or nearly the same logic repeated in more than one place?"
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Magic numbers', meaning unexplained literal numbers or strings used in logic instead of named constants?"
+    },
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Poor naming', meaning variables, functions, or classes with vague, misleading, or single-letter names?"
+    },
+    "Deep nesting": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Deep nesting', meaning conditionals or loops nested three or more levels deep?"
+    },
+    "Long parameter list": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Long parameter list', meaning a function that takes five or more parameters?"
+    },
+    "God class": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'God class', meaning a single class that holds many unrelated responsibilities?"
+    },
+    "Global mutable state": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Global mutable state', meaning module-level variables that functions read and modify?"
+    },
+    "Bare or swallowed exceptions": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Bare or swallowed exceptions', meaning catching all exceptions, or catching them and silently ignoring the error?"
+    },
+    "Dead code": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Dead code', meaning functions, variables, branches, or imports that are never used or can never run?"
+    },
+    "Commented-out code": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Commented-out code', meaning blocks of old code left in comments?"
+    },
+    "Hardcoded secrets or config": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Hardcoded secrets or config', meaning passwords, API keys, file paths, or URLs written directly into the code?"
+    },
+    "Feature envy": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Feature envy', meaning a function that mostly reads and manipulates another object's data instead of its own?"
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Primitive obsession', meaning passing raw strings, tuples, or dicts where a small class or type would clarify meaning?"
+    },
+    "Boolean flag parameter": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Boolean flag parameter', meaning a boolean argument that switches a function between two different behaviors?"
+    },
+    "Inconsistent return types": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Inconsistent return types', meaning a function that returns different types, such as a value in one branch and None in another?"
+    },
+    "Mutable default argument": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Mutable default argument', meaning a function parameter with a mutable default such as a list or dict?"
+    },
+    "Missing input validation": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Missing input validation', meaning using external or user input without checking it is present and well formed?"
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Side effects in unexpected places', meaning functions whose names suggest a pure calculation but which print, write files, or change state?"
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code` contain the code smell 'Excessive comments', meaning comments that restate what the code plainly does instead of explaining why?"
+    }
+  }
+}
+
+=== Response 1 (req_01a0ef4a1f357423bf9bd4b978563e89) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Long function": {
+      "type": "noul",
+      "noul": 0.32
+    },
+    "Duplicated code": {
+      "type": "noul",
+      "noul": 0.94
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.98
+    },
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.96
+    },
+    "Deep nesting": {
+      "type": "noul",
+      "noul": 0.97
+    },
+    "Long parameter list": {
+      "type": "noul",
+      "noul": 0.98
+    },
+    "God class": {
+      "type": "noul",
+      "noul": 0.05
+    },
+    "Global mutable state": {
+      "type": "noul",
+      "noul": 0.99
+    },
+    "Bare or swallowed exceptions": {
+      "type": "noul",
+      "noul": 0.99
+    },
+    "Dead code": {
+      "type": "noul",
+      "noul": 0.96
+    },
+    "Commented-out code": {
+      "type": "noul",
+      "noul": 0.99
+    },
+    "Hardcoded secrets or config": {
+      "type": "noul",
+      "noul": 0.99
+    },
+    "Feature envy": {
+      "type": "noul",
+      "noul": 0.42
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.91
+    },
+    "Boolean flag parameter": {
+      "type": "noul",
+      "noul": 0.98
+    },
+    "Inconsistent return types": {
+      "type": "noul",
+      "noul": 0.71
+    },
+    "Mutable default argument": {
+      "type": "noul",
+      "noul": 0.99
+    },
+    "Missing input validation": {
+      "type": "noul",
+      "noul": 0.93
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.86
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.53
+    }
+  },
+  "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 366
+  }
+}
+

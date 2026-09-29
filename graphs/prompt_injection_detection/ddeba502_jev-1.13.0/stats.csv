@@ -1,0 +1,10 @@
+question,type,option,samples,mean,std,min,max,top_count
+has_injection,noul,yes,10,0.981,0.003162277660168382,0.98,0.99,10
+start,choice,1,10,0.0,0.0,0.0,0.0,0
+start,choice,2,10,0.01,0.0,0.01,0.01,0
+start,choice,3,10,0.99,0.0,0.99,0.99,10
+start,choice,4,10,0.0,0.0,0.0,0.0,0
+end,choice,1,10,0.0,0.0,0.0,0.0,0
+end,choice,2,10,0.02,0.0,0.02,0.02,0
+end,choice,3,10,0.757,0.02790858091857933,0.72,0.8,10
+end,choice,4,10,0.223,0.02790858091857931,0.18,0.26,0

@@ -1,0 +1,314 @@
+=== Request 1 ===
+{
+  "state": "",
+  "model": "jev-latest",
+  "questions": {
+    "number": {
+      "type": "choice",
+      "instructions": "Pick exactly one of the options at random.",
+      "criteria": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": null,
+        "14": null,
+        "15": null,
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": null,
+        "33": null,
+        "34": null,
+        "35": null,
+        "36": null,
+        "37": null,
+        "38": null,
+        "39": null,
+        "40": null,
+        "41": null,
+        "42": null,
+        "43": null,
+        "44": null,
+        "45": null,
+        "46": null,
+        "47": null,
+        "48": null,
+        "49": null,
+        "50": null,
+        "51": null,
+        "52": null,
+        "53": null,
+        "54": null,
+        "55": null,
+        "56": null,
+        "57": null,
+        "58": null,
+        "59": null,
+        "60": null,
+        "61": null,
+        "62": null,
+        "63": null,
+        "64": null,
+        "65": null,
+        "66": null,
+        "67": null,
+        "68": null,
+        "69": null,
+        "70": null,
+        "71": null,
+        "72": null,
+        "73": null,
+        "74": null,
+        "75": null,
+        "76": null,
+        "77": null,
+        "78": null,
+        "79": null,
+        "80": null,
+        "81": null,
+        "82": null,
+        "83": null,
+        "84": null,
+        "85": null,
+        "86": null,
+        "87": null,
+        "88": null,
+        "89": null,
+        "90": null,
+        "91": null,
+        "92": null,
+        "93": null,
+        "94": null,
+        "95": null,
+        "96": null,
+        "97": null,
+        "98": null,
+        "99": null,
+        "100": null
+      }
+    }
+  }
+}
+
+=== Response 1 (req_01a0ef49dc2a78d8b57d55522d7da2c1) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "number": {
+      "type": "choice",
+      "choice": "1",
+      "confidence": 0.14,
+      "probabilities": {
+        "60": 0.01,
+        "74": 0.01,
+        "5": 0.01,
+        "17": 0.0,
+        "96": 0.0,
+        "12": 0.01,
+        "99": 0.0,
+        "72": 0.01,
+        "71": 0.01,
+        "73": 0.01,
+        "35": 0.0,
+        "90": 0.0,
+        "61": 0.01,
+        "62": 0.01,
+        "84": 0.01,
+        "23": 0.01,
+        "13": 0.01,
+        "86": 0.01,
+        "78": 0.01,
+        "6": 0.01,
+        "33": 0.01,
+        "81": 0.01,
+        "94": 0.0,
+        "100": 0.03,
+        "54": 0.01,
+        "59": 0.01,
+        "31": 0.01,
+        "70": 0.01,
+        "45": 0.01,
+        "88": 0.01,
+        "67": 0.01,
+        "95": 0.0,
+        "10": 0.01,
+        "75": 0.01,
+        "49": 0.01,
+        "22": 0.0,
+        "52": 0.01,
+        "64": 0.01,
+        "76": 0.01,
+        "34": 0.01,
+        "26": 0.01,
+        "24": 0.01,
+        "92": 0.0,
+        "43": 0.01,
+        "21": 0.01,
+        "91": 0.0,
+        "3": 0.01,
+        "8": 0.01,
+        "9": 0.01,
+        "20": 0.01,
+        "77": 0.01,
+        "80": 0.01,
+        "27": 0.01,
+        "44": 0.01,
+        "25": 0.01,
+        "97": 0.0,
+        "68": 0.01,
+        "28": 0.01,
+        "19": 0.01,
+        "89": 0.01,
+        "63": 0.01,
+        "18": 0.01,
+        "87": 0.01,
+        "58": 0.01,
+        "32": 0.01,
+        "83": 0.01,
+        "51": 0.01,
+        "66": 0.01,
+        "1": 0.13999999999999999,
+        "36": 0.01,
+        "82": 0.01,
+        "11": 0.01,
+        "85": 0.01,
+        "65": 0.01,
+        "55": 0.01,
+        "57": 0.01,
+        "50": 0.01,
+        "53": 0.01,
+        "16": 0.01,
+        "4": 0.01,
+        "15": 0.01,
+        "37": 0.01,
+        "2": 0.01,
+        "56": 0.01,
+        "93": 0.0,
+        "29": 0.01,
+        "47": 0.01,
+        "30": 0.01,
+        "48": 0.0,
+        "79": 0.01,
+        "14": 0.01,
+        "98": 0.0,
+        "42": 0.01,
+        "41": 0.01,
+        "7": 0.01,
+        "46": 0.01,
+        "69": 0.01,
+        "39": 0.01,
+        "40": 0.01,
+        "38": 0.01
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 971,
+    "output_tokens": 809
+  }
+}
+
+=== Request 2 ===
+{
+  "state": {
+    "secret_number": 1,
+    "guess": 99
+  },
+  "model": "jev-latest",
+  "questions": {
+    "hint": {
+      "type": "choice",
+      "instructions": "Compare `guess` to `secret_number` and tell the player what to do next.",
+      "criteria": {
+        "higher": "`guess` is less than `secret_number`",
+        "lower": "`guess` is greater than `secret_number`",
+        "match": "`guess` equals `secret_number`"
+      }
+    }
+  }
+}
+
+=== Response 2 (req_01a0ef49e2c07a93ba7fac819e881870) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "hint": {
+      "type": "choice",
+      "choice": "lower",
+      "confidence": 1.0,
+      "probabilities": {
+        "higher": 0.0,
+        "lower": 1.0,
+        "match": 0.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 368,
+    "output_tokens": 38
+  }
+}
+
+=== Request 3 ===
+{
+  "state": {
+    "secret_number": 1,
+    "guess": 1
+  },
+  "model": "jev-latest",
+  "questions": {
+    "hint": {
+      "type": "choice",
+      "instructions": "Compare `guess` to `secret_number` and tell the player what to do next.",
+      "criteria": {
+        "higher": "`guess` is less than `secret_number`",
+        "lower": "`guess` is greater than `secret_number`",
+        "match": "`guess` equals `secret_number`"
+      }
+    }
+  }
+}
+
+=== Response 3 (req_01a0ef49e5bb7f9db516192b49f65fe1) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "hint": {
+      "type": "choice",
+      "choice": "match",
+      "confidence": 1.0,
+      "probabilities": {
+        "match": 1.0,
+        "lower": 0.0,
+        "higher": 0.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 367,
+    "output_tokens": 38
+  }
+}
+

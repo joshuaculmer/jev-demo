@@ -1,0 +1,21 @@
+question,type,option,samples,mean,std,min,max,top_count
+Long function,noul,yes,11,0.3118181818181818,0.02482667187449088,0.28,0.37,0
+Duplicated code,noul,yes,11,0.9436363636363636,0.005045249791095135,0.94,0.95,11
+Magic numbers,noul,yes,11,0.98,0.0,0.98,0.98,11
+Poor naming,noul,yes,11,0.96,0.0,0.96,0.96,11
+Deep nesting,noul,yes,11,0.97,0.0,0.97,0.97,11
+Long parameter list,noul,yes,11,0.98,0.0,0.98,0.98,11
+God class,noul,yes,11,0.045454545454545456,0.005222329678670936,0.04,0.05,0
+Global mutable state,noul,yes,11,0.99,0.0,0.99,0.99,11
+Bare or swallowed exceptions,noul,yes,11,0.99,0.0,0.99,0.99,11
+Dead code,noul,yes,11,0.9518181818181818,0.004045199174779456,0.95,0.96,11
+Commented-out code,noul,yes,11,0.99,0.0,0.99,0.99,11
+Hardcoded secrets or config,noul,yes,11,0.99,0.0,0.99,0.99,11
+Feature envy,noul,yes,11,0.41,0.014832396974191317,0.38,0.43,0
+Primitive obsession,noul,yes,11,0.9136363636363637,0.005045249791095135,0.91,0.92,11
+Boolean flag parameter,noul,yes,11,0.9781818181818182,0.004045199174779456,0.97,0.98,11
+Inconsistent return types,noul,yes,11,0.7445454545454545,0.07891307069980694,0.59,0.83,11
+Mutable default argument,noul,yes,11,0.99,0.0,0.99,0.99,11
+Missing input validation,noul,yes,11,0.93,0.004472135954999559,0.92,0.94,11
+Side effects in unexpected places,noul,yes,11,0.8590909090909091,0.01044465935734188,0.84,0.88,11
+Excessive comments,noul,yes,11,0.5281818181818182,0.017786613965666314,0.5,0.57,11

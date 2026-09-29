@@ -1,0 +1,4 @@
+question,type,option,samples,mean,std,min,max,top_count
+hint,choice,match,3,1.0,0.0,1.0,1.0,3
+hint,choice,higher,3,0.0,0.0,0.0,0.0,0
+hint,choice,lower,3,0.0,0.0,0.0,0.0,0
