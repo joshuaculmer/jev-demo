@@ -11,10 +11,10 @@ def pick_number(jev):
     return int(response.answers["number"].choice)
 
 
-def repeatable_request(jev, input_path=None):
+def repeatable_request(context, input_path=None):
     """Ask Jev to pick the secret number. Takes no input file."""
 
-    return pick_number(jev)
+    return pick_number(context.jev)
 
 
 def compare(jev, secret, guess):
@@ -42,7 +42,8 @@ def read_guess():
         print("Enter a whole number from 1 to 100.")
 
 
-def start_workflow(jev):
+def start_workflow(context):
+    jev = context.jev
     secret = pick_number(jev)
     print("\nJev has picked a number between 1 and 100.\n")
 

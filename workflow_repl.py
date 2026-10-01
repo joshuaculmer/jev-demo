@@ -1,10 +1,9 @@
 import importlib.util
-from datetime import datetime
 from pathlib import Path
 
 from typesafe_sdk import TypeSafeError
 
-from logged_jev import LoggedJev
+from run_context import start_run
 
 
 def load_module(filename):
@@ -30,10 +29,9 @@ class WorkflowRepl:
 
     def run_workflow(self, filename):
         module = load_module(filename)
-        run_name = f"{Path(filename).stem}_{datetime.now():%Y-%m-%d_%H-%M-%S}"
 
-        with LoggedJev(self.logger, run_name) as jev:
-            module.start_workflow(jev)
+        with start_run(Path(filename).stem, self.logger) as context:
+            module.start_workflow(context)
 
     def start(self, directory="workflows"):
         workflows = self.scan_for_workflows(directory)

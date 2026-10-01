@@ -24,20 +24,24 @@ import json
 import re
 import shutil
 import statistics
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = Path(__file__).resolve().parent.parent
+from run_context import workflow_name_of
+
 OUTPUTS = ROOT / "outputs"
 GRAPHS = ROOT / "graphs"
 
 HEADER = re.compile(r"^=== (Request|Response) (\d+)(?: \([^)]*\))? ===$", re.MULTILINE)
-TIMESTAMP = re.compile(r"_\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}$")
 
 THRESHOLD = 0.5
 TOP_OPTIONS = 10
@@ -67,7 +71,7 @@ def collect_groups():
 
     groups = defaultdict(list)
     for path in sorted(OUTPUTS.rglob("*.txt")):
-        workflow = TIMESTAMP.sub("", path.stem)
+        workflow = workflow_name_of(path.stem)
         for request, response in parse_log(path):
             body = json.dumps({"state": request["state"], "questions": request["questions"]}, sort_keys=True)
             groups[(workflow, response["model"], body)].append(response["answers"])
@@ -75,16 +79,20 @@ def collect_groups():
 
 
 def group_labels(keys):
-    """Label each group by its state's filename, or a hash when there is none or it collides."""
+    """Label each group by its state's filename and unit, or a hash when there is none or it collides."""
 
     def digest(body):
         return hashlib.sha256(body.encode()).hexdigest()[:8]
 
+    def readable(state):
+        if not isinstance(state, dict) or not state.get("filename"):
+            return None
+        stem = Path(state["filename"]).stem
+        return f"{stem}.{state['unit']}" if state.get("unit") else stem
+
     labels = {}
     for key in keys:
-        state = json.loads(key[2])["state"]
-        filename = state.get("filename") if isinstance(state, dict) else None
-        labels[key] = Path(filename).stem if filename else digest(key[2])
+        labels[key] = readable(json.loads(key[2])["state"]) or digest(key[2])
 
     counts = Counter((key[0], key[1], label) for key, label in labels.items())
     for key, label in labels.items():

@@ -50,12 +50,12 @@ def ask_about_injection(jev, prompt, sentences):
     )
 
 
-def repeatable_request(jev, input_path):
+def repeatable_request(context, input_path):
     prompt = Path(input_path).read_text(encoding="utf-8")
-    return ask_about_injection(jev, prompt, split_sentences(prompt))
+    return ask_about_injection(context.jev, prompt, split_sentences(prompt))
 
 
-def start_workflow(jev):
+def start_workflow(context):
     prompt = choose_prompt()
     sentences = split_sentences(prompt)
 
@@ -63,7 +63,7 @@ def start_workflow(jev):
     for i, sentence in enumerate(sentences, 1):
         print(f"  [{i}] {sentence}")
 
-    response = ask_about_injection(jev, prompt, sentences)
+    response = ask_about_injection(context.jev, prompt, sentences)
 
     p_injection = response.answers["has_injection"].noul
     print(f"\nP(injection) = {p_injection:.2f}")
