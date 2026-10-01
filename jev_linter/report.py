@@ -24,6 +24,7 @@ def to_json(results: list[FilterResult]) -> str:
 
 def _format_result(result: FilterResult) -> str:
     lines = [f"{result.source}: {len(result.passed)} of {len(result.checked)} files passed"]
+    lines.extend(f"  ({note})" for note in result.notes)
     for finding in sorted(result.findings, key=_sort_key):
         lines.append(f"  {_format_location(finding.location)}  {finding.rule}{_format_probability(finding)}")
         lines.append(f"      {finding.message}")
@@ -51,6 +52,7 @@ def _result_dict(result: FilterResult) -> dict:
         "source": result.source,
         "checked": [display_path(file) for file in result.checked],
         "passed": [display_path(file) for file in result.passed],
+        "notes": list(result.notes),
         "findings": [_finding_dict(finding) for finding in sorted(result.findings, key=_sort_key)],
     }
 

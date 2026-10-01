@@ -34,14 +34,21 @@ class FilterResult:
     checked: list[Path]
     passed: list[Path]
     findings: list[Finding]
+    notes: tuple[str, ...] = ()
 
     @classmethod
-    def from_findings(cls, source: str, checked: list[Path], findings: list[Finding]) -> FilterResult:
+    def from_findings(
+        cls,
+        source: str,
+        checked: list[Path],
+        findings: list[Finding],
+        notes: tuple[str, ...] = (),
+    ) -> FilterResult:
         """A checked file passes when no finding touches it."""
 
         failed = {file.resolve() for finding in findings for file in finding.files}
         passed = [file for file in checked if file.resolve() not in failed]
-        return cls(source, checked, passed, findings)
+        return cls(source, checked, passed, findings, notes)
 
 
 class Filter(Protocol):

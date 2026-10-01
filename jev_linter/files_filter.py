@@ -1,16 +1,17 @@
 from pathlib import Path
 
-from typesafe_sdk import Choice, Noul, Question, SystemOneResponse
+from typesafe_sdk import Noul, Question
 
 from jev_client import JevClient
-from jev_linter.findings import FilterResult, Finding, Location
+from jev_linter.findings import FilterResult, Finding
+from jev_linter.questions import (
+    THRESHOLD,
+    read_span,
+    span_lines,
+    span_questions,
+    unit_state,
+)
 from jev_linter.units import Unit, extract_units
-
-THRESHOLD = 0.5
-
-# Choice accepts at most 255 options, so longer units are reported whole.
-
-MAX_SPAN_OPTIONS = 255
 
 FUNCTION_SMELLS = {
     "Poor naming": "the function, its parameters, or its variables have vague, misleading, or single-letter names",
@@ -48,16 +49,10 @@ class JevFilesFilter:
 
     def check(self, unit: Unit) -> list[Finding]:
         smells = CLASS_SMELLS if unit.kind == "class" else FUNCTION_SMELLS
-        lines = unit.numbered_lines()
-        ask_span = unit.kind == "function" and len(lines) <= MAX_SPAN_OPTIONS
-
-        response = self.jev.system_one(
-            {"filename": unit.file.name, "unit": unit.name, "code": unit.source},
-            smell_questions(unit, smells, lines if ask_span else None),
-        )
+        response = self.jev.system_one(unit_state(unit), smell_questions(unit, smells))
         return [
             Finding(
-                location=span(response, smell, unit) if ask_span else unit.location,
+                location=read_span(response, smell, unit),
                 rule=smell,
                 source=self.source,
                 message=f"`{unit.name}`: {definition}",
@@ -68,29 +63,13 @@ class JevFilesFilter:
         ]
 
 
-def smell_questions(unit: Unit, smells: dict[str, str], lines: dict[str, str] | None) -> dict[str, Question]:
-    """One Noul per smell, plus speculative start and end lines when lines are given."""
+def smell_questions(unit: Unit, smells: dict[str, str]) -> dict[str, Question]:
+    """One Noul per smell, plus speculative span questions for functions."""
 
+    lines = span_lines(unit)
     questions: dict[str, Question] = {}
     for smell, definition in smells.items():
         meaning = f"the code smell '{smell}', meaning {definition}"
         questions[smell] = Noul(instructions=f"Does `code`, the {unit.kind} `unit`, have {meaning}?")
-        if lines:
-            assumption = f"Assume `code` has {meaning}."
-            questions[f"{smell}: start"] = Choice(
-                instructions=f"{assumption} On which line does the clearest instance start?",
-                criteria=lines,
-            )
-            questions[f"{smell}: end"] = Choice(
-                instructions=f"{assumption} On which line does that same instance end?",
-                criteria=lines,
-            )
+        questions |= span_questions(smell, f"Assume `code` has {meaning}.", "`code`", lines)
     return questions
-
-
-def span(response: SystemOneResponse, smell: str, unit: Unit) -> Location:
-    """The span Jev chose, or the whole unit when the span is inverted."""
-
-    start = int(response.answers[f"{smell}: start"].choice)
-    end = int(response.answers[f"{smell}: end"].choice)
-    return Location(unit.file, start, end) if start <= end else unit.location
