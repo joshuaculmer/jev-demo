@@ -19,7 +19,10 @@ def format_text(results: list[FilterResult]) -> str:
 
 
 def to_json(results: list[FilterResult]) -> str:
-    return json.dumps({"filters": [_result_dict(result) for result in results]}, indent=2)
+    """The last filter's passed files are the ones that cleared every filter."""
+
+    passed_all = [display_path(file) for file in results[-1].passed] if results else []
+    return json.dumps({"passed_all": passed_all, "filters": [_result_dict(result) for result in results]}, indent=2)
 
 
 def _format_result(result: FilterResult) -> str:
