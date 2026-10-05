@@ -1,0 +1,951 @@
+{
+  "filters": [
+    {
+      "source": "jev_linter_project",
+      "checked": [
+        "jev_client.py",
+        "jev_linter/__init__.py",
+        "jev_linter/console.py",
+        "jev_linter/discovery.py",
+        "jev_linter/files_filter.py",
+        "jev_linter/findings.py",
+        "jev_linter/project_filter.py",
+        "jev_linter/project_graph.py",
+        "jev_linter/questions.py",
+        "jev_linter/report.py",
+        "jev_linter/ruff_filter.py",
+        "jev_linter/units.py",
+        "logged_jev.py",
+        "main.py",
+        "raw_logger.py",
+        "run_context.py",
+        "scripts/evaluate_determinism.py",
+        "scripts/repeat_workflow.py",
+        "workflow_repl.py",
+        "workflows/__init__.py",
+        "workflows/guessing_game.py",
+        "workflows/jev_linter_files.py",
+        "workflows/jev_linter_project.py",
+        "workflows/prompt_injection_detection.py"
+      ],
+      "passed": [
+        "jev_client.py",
+        "jev_linter/__init__.py",
+        "jev_linter/findings.py",
+        "jev_linter/report.py",
+        "main.py",
+        "workflows/__init__.py"
+      ],
+      "notes": [
+        "137 units, 47 knowledge pairs, 111 call edges, 17 constructions"
+      ],
+      "findings": [
+        {
+          "file": "jev_linter/console.py",
+          "start_line": 21,
+          "end_line": 21,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`ask_for_files` calls `python_files`: outside input reaches the callee without either function checking it",
+          "probability": 0.61,
+          "related": [
+            {
+              "file": "jev_linter/discovery.py",
+              "start_line": 6,
+              "end_line": 10
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/discovery.py",
+          "start_line": 9,
+          "end_line": 9,
+          "rule": "Duplicated knowledge",
+          "source": "jev_linter_project",
+          "message": "`python_files` and `RuffFilter.run`: both encode the same knowledge, so changing it means editing both",
+          "probability": 0.53,
+          "related": [
+            {
+              "file": "jev_linter/ruff_filter.py",
+              "start_line": 37,
+              "end_line": 37
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/discovery.py",
+          "start_line": 9,
+          "end_line": 9,
+          "rule": "Drift",
+          "source": "jev_linter_project",
+          "message": "`python_files` and `RuffFilter.run`: both encode the same knowledge, and the copies already disagree",
+          "probability": 0.81,
+          "related": [
+            {
+              "file": "jev_linter/ruff_filter.py",
+              "start_line": 37,
+              "end_line": 37
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/files_filter.py",
+          "start_line": 47,
+          "end_line": 47,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`JevFilesFilter.run` calls `extract_units`: outside input reaches the callee without either function checking it",
+          "probability": 0.7,
+          "related": [
+            {
+              "file": "jev_linter/units.py",
+              "start_line": 140,
+              "end_line": 142
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/files_filter.py",
+          "start_line": 47,
+          "end_line": 47,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`JevFilesFilter.run` calls `JevFilesFilter.check`: outside input reaches the callee without either function checking it",
+          "probability": 0.64,
+          "related": [
+            {
+              "file": "jev_linter/files_filter.py",
+              "start_line": 50,
+              "end_line": 63
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/files_filter.py",
+          "start_line": 50,
+          "end_line": 63,
+          "rule": "Duplicated knowledge",
+          "source": "jev_linter_project",
+          "message": "`JevFilesFilter.check` and `JevProjectFilter.check_pair`: both encode the same knowledge, so changing it means editing both",
+          "probability": 0.72,
+          "related": [
+            {
+              "file": "jev_linter/project_filter.py",
+              "start_line": 118,
+              "end_line": 119
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/files_filter.py",
+          "start_line": 50,
+          "end_line": 63,
+          "rule": "Shotgun surgery",
+          "source": "jev_linter_project",
+          "message": "`JevFilesFilter.check`, `JevProjectFilter.check_pair`, `unit_state`: these units encode the same knowledge, so one change touches all of them",
+          "probability": 0.58,
+          "related": [
+            {
+              "file": "jev_linter/project_filter.py",
+              "start_line": 115,
+              "end_line": 137
+            },
+            {
+              "file": "jev_linter/questions.py",
+              "start_line": 17,
+              "end_line": 23
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/files_filter.py",
+          "start_line": 55,
+          "end_line": 55,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`JevFilesFilter.check` calls `read_span`: outside input reaches the callee without either function checking it",
+          "probability": 0.55,
+          "related": [
+            {
+              "file": "jev_linter/questions.py",
+              "start_line": 50,
+              "end_line": 58
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_filter.py",
+          "start_line": 102,
+          "end_line": 102,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`JevProjectFilter.run` calls `build_graph`: outside input reaches the callee without either function checking it",
+          "probability": 0.61,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 66,
+              "end_line": 92
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_filter.py",
+          "start_line": 118,
+          "end_line": 137,
+          "rule": "Duplicated knowledge",
+          "source": "jev_linter_project",
+          "message": "`JevProjectFilter.check_pair` and `unit_state`: both encode the same knowledge, so changing it means editing both",
+          "probability": 0.58,
+          "related": [
+            {
+              "file": "jev_linter/questions.py",
+              "start_line": 18,
+              "end_line": 23
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 69,
+          "end_line": 69,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`build_graph` calls `read_module`: outside input reaches the callee without either function checking it",
+          "probability": 0.61,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 106,
+              "end_line": 115
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 70,
+          "end_line": 70,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`build_graph` calls `extract_units`: outside input reaches the callee without either function checking it",
+          "probability": 0.58,
+          "related": [
+            {
+              "file": "jev_linter/units.py",
+              "start_line": 140,
+              "end_line": 142
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 71,
+          "end_line": 71,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`build_graph` calls `Resolver.__init__`: outside input reaches the callee without either function checking it",
+          "probability": 0.62,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 129,
+              "end_line": 132
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 107,
+          "end_line": 107,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`read_module` calls `module_name`: outside input reaches the callee without either function checking it",
+          "probability": 0.6,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 95,
+              "end_line": 103
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 109,
+          "end_line": 109,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`read_module` calls `read_source`: outside input reaches the callee without either function checking it",
+          "probability": 0.67,
+          "related": [
+            {
+              "file": "jev_linter/units.py",
+              "start_line": 135,
+              "end_line": 137
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 113,
+          "end_line": 113,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`read_module` calls `_absolute_module`: outside input reaches the callee without either function checking it",
+          "probability": 0.65,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 118,
+              "end_line": 123
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 153,
+          "end_line": 153,
+          "rule": "Duplicated knowledge",
+          "source": "jev_linter_project",
+          "message": "`Resolver._target` and `Resolver._lookup`: both encode the same knowledge, so changing it means editing both",
+          "probability": 0.56,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 172,
+              "end_line": 173
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/project_graph.py",
+          "start_line": 153,
+          "end_line": 153,
+          "rule": "Drift",
+          "source": "jev_linter_project",
+          "message": "`Resolver._target` and `Resolver._lookup`: both encode the same knowledge, and the copies already disagree",
+          "probability": 0.6,
+          "related": [
+            {
+              "file": "jev_linter/project_graph.py",
+              "start_line": 172,
+              "end_line": 173
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/ruff_filter.py",
+          "start_line": 37,
+          "end_line": 37,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`RuffFilter.run` calls `run_ruff`: outside input reaches the callee without either function checking it",
+          "probability": 0.52,
+          "related": [
+            {
+              "file": "jev_linter/ruff_filter.py",
+              "start_line": 13,
+              "end_line": 27
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/ruff_filter.py",
+          "start_line": 38,
+          "end_line": 38,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`RuffFilter.run` calls `RuffFilter._to_finding`: outside input reaches the callee without either function checking it",
+          "probability": 0.86,
+          "related": [
+            {
+              "file": "jev_linter/ruff_filter.py",
+              "start_line": 41,
+              "end_line": 51
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/units.py",
+          "start_line": 141,
+          "end_line": 141,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`extract_units` calls `read_source`: outside input reaches the callee without either function checking it",
+          "probability": 0.68,
+          "related": [
+            {
+              "file": "jev_linter/units.py",
+              "start_line": 135,
+              "end_line": 137
+            }
+          ]
+        },
+        {
+          "file": "jev_linter/units.py",
+          "start_line": 142,
+          "end_line": 142,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`extract_units` calls `_walk`: outside input reaches the callee without either function checking it",
+          "probability": 0.7,
+          "related": [
+            {
+              "file": "jev_linter/units.py",
+              "start_line": 145,
+              "end_line": 152
+            }
+          ]
+        },
+        {
+          "file": "logged_jev.py",
+          "start_line": 17,
+          "end_line": 17,
+          "rule": "Missing dependency injection",
+          "source": "jev_linter_project",
+          "message": "`LoggedJev.__init__` constructs `TypeSafeClient`: the collaborator should be passed in so callers can substitute it",
+          "probability": 0.73,
+          "related": []
+        },
+        {
+          "file": "logged_jev.py",
+          "start_line": 32,
+          "end_line": 33,
+          "rule": "Duplicated knowledge",
+          "source": "jev_linter_project",
+          "message": "`LoggedJev.system_one` and `parse_log`: both encode the same knowledge, so changing it means editing both",
+          "probability": 0.64,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 60,
+              "end_line": 66
+            }
+          ]
+        },
+        {
+          "file": "logged_jev.py",
+          "start_line": 32,
+          "end_line": 33,
+          "rule": "Drift",
+          "source": "jev_linter_project",
+          "message": "`LoggedJev.system_one` and `parse_log`: both encode the same knowledge, and the copies already disagree",
+          "probability": 0.78,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 60,
+              "end_line": 66
+            }
+          ]
+        },
+        {
+          "file": "logged_jev.py",
+          "start_line": 32,
+          "end_line": 32,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`LoggedJev.system_one` calls `pretty`: outside input reaches the callee without either function checking it",
+          "probability": 0.88,
+          "related": [
+            {
+              "file": "logged_jev.py",
+              "start_line": 6,
+              "end_line": 7
+            }
+          ]
+        },
+        {
+          "file": "raw_logger.py",
+          "start_line": 17,
+          "end_line": 17,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`RawLogger.log` calls `RawLogger.log_path`: outside input reaches the callee without either function checking it",
+          "probability": 0.74,
+          "related": [
+            {
+              "file": "raw_logger.py",
+              "start_line": 10,
+              "end_line": 11
+            }
+          ]
+        },
+        {
+          "file": "run_context.py",
+          "start_line": 34,
+          "end_line": 34,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`start_run` calls `LoggedJev.__init__`: outside input reaches the callee without either function checking it",
+          "probability": 0.51,
+          "related": [
+            {
+              "file": "logged_jev.py",
+              "start_line": 13,
+              "end_line": 17
+            }
+          ]
+        },
+        {
+          "file": "run_context.py",
+          "start_line": 34,
+          "end_line": 34,
+          "rule": "Missing dependency injection",
+          "source": "jev_linter_project",
+          "message": "`start_run` constructs `LoggedJev`: the collaborator should be passed in so callers can substitute it",
+          "probability": 0.7,
+          "related": []
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 74,
+          "end_line": 74,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`collect_groups` calls `workflow_name_of`: outside input reaches the callee without either function checking it",
+          "probability": 0.59,
+          "related": [
+            {
+              "file": "run_context.py",
+              "start_line": 38,
+              "end_line": 53
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 75,
+          "end_line": 75,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`collect_groups` calls `parse_log`: outside input reaches the callee without either function checking it",
+          "probability": 0.62,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 59,
+              "end_line": 66
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 137,
+          "end_line": 137,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`question_rows` calls `distribution_rows`: outside input reaches the callee without either function checking it",
+          "probability": 0.56,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 117,
+              "end_line": 124
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 140,
+          "end_line": 140,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`question_rows` calls `describe`: outside input reaches the callee without either function checking it",
+          "probability": 0.57,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 107,
+              "end_line": 114
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 179,
+          "end_line": 179,
+          "rule": "Duplicated knowledge",
+          "source": "jev_linter_project",
+          "message": "`save_graph` and `summary_line`: both encode the same knowledge, so changing it means editing both",
+          "probability": 0.61,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 214,
+              "end_line": 214
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 179,
+          "end_line": 179,
+          "rule": "Drift",
+          "source": "jev_linter_project",
+          "message": "`save_graph` and `summary_line`: both encode the same knowledge, and the copies already disagree",
+          "probability": 0.82,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 214,
+              "end_line": 214
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 187,
+          "end_line": 187,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`save_graph` calls `value_count_chart`: outside input reaches the callee without either function checking it",
+          "probability": 0.57,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 161,
+              "end_line": 175
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 201,
+          "end_line": 201,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`save_graph` calls `style`: outside input reaches the callee without either function checking it",
+          "probability": 0.76,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 148,
+              "end_line": 158
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 233,
+          "end_line": 233,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `collect_groups`: outside input reaches the callee without either function checking it",
+          "probability": 0.54,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 69,
+              "end_line": 78
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 234,
+          "end_line": 234,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `group_labels`: outside input reaches the callee without either function checking it",
+          "probability": 0.57,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 81,
+              "end_line": 101
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 252,
+          "end_line": 252,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `question_rows`: outside input reaches the callee without either function checking it",
+          "probability": 0.53,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 127,
+              "end_line": 142
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 254,
+          "end_line": 254,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `summary_line`: outside input reaches the callee without either function checking it",
+          "probability": 0.51,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 210,
+              "end_line": 221
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 255,
+          "end_line": 255,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `save_graph`: outside input reaches the callee without either function checking it",
+          "probability": 0.54,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 178,
+              "end_line": 204
+            }
+          ]
+        },
+        {
+          "file": "scripts/evaluate_determinism.py",
+          "start_line": 255,
+          "end_line": 255,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `safe_name`: outside input reaches the callee without either function checking it",
+          "probability": 0.51,
+          "related": [
+            {
+              "file": "scripts/evaluate_determinism.py",
+              "start_line": 224,
+              "end_line": 225
+            }
+          ]
+        },
+        {
+          "file": "scripts/repeat_workflow.py",
+          "start_line": 31,
+          "end_line": 31,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `load_module`: outside input reaches the callee without either function checking it",
+          "probability": 0.83,
+          "related": [
+            {
+              "file": "workflow_repl.py",
+              "start_line": 9,
+              "end_line": 14
+            }
+          ]
+        },
+        {
+          "file": "scripts/repeat_workflow.py",
+          "start_line": 33,
+          "end_line": 33,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `RawLogger.__init__`: outside input reaches the callee without either function checking it",
+          "probability": 0.73,
+          "related": [
+            {
+              "file": "raw_logger.py",
+              "start_line": 7,
+              "end_line": 8
+            }
+          ]
+        },
+        {
+          "file": "scripts/repeat_workflow.py",
+          "start_line": 35,
+          "end_line": 35,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`main` calls `start_run`: outside input reaches the callee without either function checking it",
+          "probability": 0.82,
+          "related": [
+            {
+              "file": "run_context.py",
+              "start_line": 29,
+              "end_line": 35
+            }
+          ]
+        },
+        {
+          "file": "workflow_repl.py",
+          "start_line": 27,
+          "end_line": 27,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`WorkflowRepl.scan_for_workflows` calls `load_module`: outside input reaches the callee without either function checking it",
+          "probability": 0.71,
+          "related": [
+            {
+              "file": "workflow_repl.py",
+              "start_line": 9,
+              "end_line": 14
+            }
+          ]
+        },
+        {
+          "file": "workflow_repl.py",
+          "start_line": 31,
+          "end_line": 31,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`WorkflowRepl.run_workflow` calls `load_module`: outside input reaches the callee without either function checking it",
+          "probability": 0.69,
+          "related": [
+            {
+              "file": "workflow_repl.py",
+              "start_line": 9,
+              "end_line": 14
+            }
+          ]
+        },
+        {
+          "file": "workflow_repl.py",
+          "start_line": 33,
+          "end_line": 33,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`WorkflowRepl.run_workflow` calls `start_run`: outside input reaches the callee without either function checking it",
+          "probability": 0.74,
+          "related": [
+            {
+              "file": "run_context.py",
+              "start_line": 29,
+              "end_line": 35
+            }
+          ]
+        },
+        {
+          "file": "workflows/guessing_game.py",
+          "start_line": 51,
+          "end_line": 51,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`start_workflow` calls `compare`: outside input reaches the callee without either function checking it",
+          "probability": 0.86,
+          "related": [
+            {
+              "file": "workflows/guessing_game.py",
+              "start_line": 20,
+              "end_line": 34
+            }
+          ]
+        },
+        {
+          "file": "workflows/jev_linter_files.py",
+          "start_line": 17,
+          "end_line": 17,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`start_workflow` calls `report_run`: outside input reaches the callee without either function checking it",
+          "probability": 0.7,
+          "related": [
+            {
+              "file": "jev_linter/console.py",
+              "start_line": 27,
+              "end_line": 32
+            }
+          ]
+        },
+        {
+          "file": "workflows/jev_linter_project.py",
+          "start_line": 13,
+          "end_line": 13,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`repeatable_request` calls `python_files`: outside input reaches the callee without either function checking it",
+          "probability": 0.7,
+          "related": [
+            {
+              "file": "jev_linter/discovery.py",
+              "start_line": 6,
+              "end_line": 10
+            }
+          ]
+        },
+        {
+          "file": "workflows/jev_linter_project.py",
+          "start_line": 18,
+          "end_line": 18,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`start_workflow` calls `report_run`: outside input reaches the callee without either function checking it",
+          "probability": 0.68,
+          "related": [
+            {
+              "file": "jev_linter/console.py",
+              "start_line": 27,
+              "end_line": 32
+            }
+          ]
+        },
+        {
+          "file": "workflows/prompt_injection_detection.py",
+          "start_line": 55,
+          "end_line": 55,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`repeatable_request` calls `ask_about_injection`: outside input reaches the callee without either function checking it",
+          "probability": 0.92,
+          "related": [
+            {
+              "file": "workflows/prompt_injection_detection.py",
+              "start_line": 28,
+              "end_line": 50
+            }
+          ]
+        },
+        {
+          "file": "workflows/prompt_injection_detection.py",
+          "start_line": 55,
+          "end_line": 55,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`repeatable_request` calls `split_sentences`: outside input reaches the callee without either function checking it",
+          "probability": 0.91,
+          "related": [
+            {
+              "file": "workflows/prompt_injection_detection.py",
+              "start_line": 11,
+              "end_line": 12
+            }
+          ]
+        },
+        {
+          "file": "workflows/prompt_injection_detection.py",
+          "start_line": 60,
+          "end_line": 60,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`start_workflow` calls `split_sentences`: outside input reaches the callee without either function checking it",
+          "probability": 0.65,
+          "related": [
+            {
+              "file": "workflows/prompt_injection_detection.py",
+              "start_line": 11,
+              "end_line": 12
+            }
+          ]
+        },
+        {
+          "file": "workflows/prompt_injection_detection.py",
+          "start_line": 66,
+          "end_line": 66,
+          "rule": "Missing validation",
+          "source": "jev_linter_project",
+          "message": "`start_workflow` calls `ask_about_injection`: outside input reaches the callee without either function checking it",
+          "probability": 0.62,
+          "related": [
+            {
+              "file": "workflows/prompt_injection_detection.py",
+              "start_line": 28,
+              "end_line": 50
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

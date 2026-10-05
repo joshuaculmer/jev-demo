@@ -216,7 +216,7 @@ The script writes one folder per group, at `graphs/<workflow>/<label>_<model>/`.
 
 Interactive runs from `main.py` count too, so any request repeated by hand also shows up in the graphs.
 
-`evaluate_determinism.py` deletes `graphs/` before rebuilding it. Raw logs in `outputs/` are not committed, so running the script on a fresh clone replaces the committed graphs with whatever your local logs support.
+`evaluate_determinism.py` deletes `graphs/` before rebuilding it from every log in `outputs/`. The logs are committed, so a fresh clone can rebuild the same graphs.
 
 ## Project layout
 
@@ -233,6 +233,6 @@ workflows/               One module per workflow
 input_files/<workflow>/  Example inputs
 scripts/                 Repeat and determinism tools
 graphs/                  Committed determinism results
-outputs/                 Raw call logs and findings (git-ignored)
+outputs/                 Committed raw call logs and findings
 jev-skill.md             TypeSafe skill file used as agent context while building
 ```

@@ -1,0 +1,1670 @@
+=== Request 1 ===
+{
+  "state": {
+    "filename": "logged_jev.py",
+    "unit": "pretty",
+    "code": "def pretty(raw):\n    return json.dumps(json.loads(raw), indent=2)"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does the clearest instance start?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does that same instance end?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does the clearest instance start?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does that same instance end?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does the clearest instance start?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does that same instance end?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does the clearest instance start?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does that same instance end?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does the clearest instance start?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does that same instance end?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does the clearest instance start?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does that same instance end?",
+      "criteria": {
+        "6": "def pretty(raw):",
+        "7": "    return json.dumps(json.loads(raw), indent=2)"
+      }
+    }
+  }
+}
+
+=== Response 1 (req_01a0f5323a65755db8decc18af98751a) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "6",
+      "confidence": 0.69,
+      "probabilities": {
+        "6": 0.85,
+        "7": 0.15
+      }
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.33,
+      "probabilities": {
+        "6": 0.33,
+        "7": 0.67
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.52,
+      "probabilities": {
+        "6": 0.24,
+        "7": 0.76
+      }
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.99,
+      "probabilities": {
+        "6": 0.01,
+        "7": 0.99
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.5,
+      "probabilities": {
+        "6": 0.25,
+        "7": 0.75
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.09
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "6",
+      "confidence": 0.47,
+      "probabilities": {
+        "6": 0.74,
+        "7": 0.26
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.02,
+      "probabilities": {
+        "6": 0.49,
+        "7": 0.51
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.03
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.43
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.96,
+      "probabilities": {
+        "6": 0.02,
+        "7": 0.98
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.45
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.87,
+      "probabilities": {
+        "6": 0.06,
+        "7": 0.94
+      }
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.67,
+      "probabilities": {
+        "6": 0.17,
+        "7": 0.83
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.48,
+      "probabilities": {
+        "6": 0.26,
+        "7": 0.74
+      }
+    },
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.53
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.81,
+      "probabilities": {
+        "6": 0.09,
+        "7": 0.91
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    }
+  },
+  "usage": {
+    "input_tokens": 1827,
+    "output_tokens": 498
+  }
+}
+
+=== Request 2 ===
+{
+  "state": {
+    "filename": "logged_jev.py",
+    "unit": "LoggedJev",
+    "code": "class LoggedJev:\n    \"\"\"Sends questions to Jev and logs each raw request and response as it happens.\"\"\"\n\n    def __init__(self, logger, run_name):\n        self.logger = logger\n        self.run_name = run_name\n        self.calls = 0\n        self.client = TypeSafeClient()\n\n    def __enter__(self):\n        return self\n\n    def __exit__(self, *exc_info):\n        self.client.close()\n\n    def system_one(self, *args, **kwargs):\n        response = self.client.system_one(*args, **kwargs)\n        self.calls += 1\n\n        http = response.raw_http_response\n        self.logger.log(\n            self.run_name,\n            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"\n            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",\n        )\n        return response"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "God class": {
+      "type": "noul",
+      "instructions": "Does `code`, the class `unit`, have the code smell 'God class', meaning the class holds many unrelated responsibilities?"
+    }
+  }
+}
+
+=== Response 2 (req_01a0f5323b1b7088b81c5c417d6f0cb4) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "God class": {
+      "type": "noul",
+      "noul": 0.14
+    }
+  },
+  "usage": {
+    "input_tokens": 519,
+    "output_tokens": 21
+  }
+}
+
+=== Request 3 ===
+{
+  "state": {
+    "filename": "logged_jev.py",
+    "unit": "LoggedJev.__init__",
+    "code": "    def __init__(self, logger, run_name):\n        self.logger = logger\n        self.run_name = run_name\n        self.calls = 0\n        self.client = TypeSafeClient()"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does the clearest instance start?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does that same instance end?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does the clearest instance start?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does that same instance end?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does the clearest instance start?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does that same instance end?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does the clearest instance start?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does that same instance end?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does the clearest instance start?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does that same instance end?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does the clearest instance start?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does that same instance end?",
+      "criteria": {
+        "13": "    def __init__(self, logger, run_name):",
+        "14": "        self.logger = logger",
+        "15": "        self.run_name = run_name",
+        "16": "        self.calls = 0",
+        "17": "        self.client = TypeSafeClient()"
+      }
+    }
+  }
+}
+
+=== Response 3 (req_01a0f5323c4776308f41bff95ac9c0da) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.33
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.32,
+      "probabilities": {
+        "16": 0.45,
+        "15": 0.02,
+        "17": 0.21,
+        "14": 0.04,
+        "13": 0.28
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.19,
+      "probabilities": {
+        "16": 0.35,
+        "15": 0.04,
+        "17": 0.29,
+        "14": 0.09,
+        "13": 0.23
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.11
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.82,
+      "probabilities": {
+        "16": 0.09,
+        "15": 0.01,
+        "17": 0.85,
+        "14": 0.02,
+        "13": 0.03
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.79,
+      "probabilities": {
+        "16": 0.06,
+        "15": 0.01,
+        "17": 0.83,
+        "14": 0.03,
+        "13": 0.07
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "14",
+      "confidence": 0.28,
+      "probabilities": {
+        "16": 0.12,
+        "15": 0.04,
+        "17": 0.19,
+        "14": 0.43,
+        "13": 0.22
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.61,
+      "probabilities": {
+        "16": 0.06,
+        "15": 0.04,
+        "17": 0.69,
+        "14": 0.07,
+        "13": 0.14
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.07
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.91,
+      "probabilities": {
+        "16": 0.92,
+        "15": 0.01,
+        "17": 0.049999999999999996,
+        "14": 0.01,
+        "13": 0.01
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.86,
+      "probabilities": {
+        "16": 0.89,
+        "15": 0.01,
+        "17": 0.08,
+        "14": 0.01,
+        "13": 0.01
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.28
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "15",
+      "confidence": 0.67,
+      "probabilities": {
+        "16": 0.01,
+        "15": 0.73,
+        "17": 0.01,
+        "14": 0.01,
+        "13": 0.24
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "15",
+      "confidence": 0.71,
+      "probabilities": {
+        "16": 0.02,
+        "15": 0.78,
+        "17": 0.14,
+        "14": 0.01,
+        "13": 0.05
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.05
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.85,
+      "probabilities": {
+        "16": 0.04,
+        "15": 0.01,
+        "17": 0.87,
+        "14": 0.05,
+        "13": 0.03
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.77,
+      "probabilities": {
+        "16": 0.04,
+        "15": 0.02,
+        "17": 0.81,
+        "14": 0.04,
+        "13": 0.08
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 2604,
+    "output_tokens": 822
+  }
+}
+
+=== Request 4 ===
+{
+  "state": {
+    "filename": "logged_jev.py",
+    "unit": "LoggedJev.__enter__",
+    "code": "    def __enter__(self):\n        return self"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does the clearest instance start?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does that same instance end?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does the clearest instance start?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does that same instance end?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does the clearest instance start?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does that same instance end?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does the clearest instance start?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does that same instance end?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does the clearest instance start?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does that same instance end?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does the clearest instance start?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does that same instance end?",
+      "criteria": {
+        "19": "    def __enter__(self):",
+        "20": "        return self"
+      }
+    }
+  }
+}
+
+=== Response 4 (req_01a0f5323ced72d0849884b3279933e6) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.09
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "19",
+      "confidence": 0.26,
+      "probabilities": {
+        "19": 0.63,
+        "20": 0.37
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.32,
+      "probabilities": {
+        "19": 0.34,
+        "20": 0.66
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.04
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "19",
+      "confidence": 0.04,
+      "probabilities": {
+        "19": 0.52,
+        "20": 0.48
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.71,
+      "probabilities": {
+        "19": 0.14,
+        "20": 0.86
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.19,
+      "probabilities": {
+        "19": 0.41,
+        "20": 0.59
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.63,
+      "probabilities": {
+        "19": 0.19,
+        "20": 0.81
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.02
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.53,
+      "probabilities": {
+        "19": 0.24,
+        "20": 0.76
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.53,
+      "probabilities": {
+        "19": 0.24,
+        "20": 0.76
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.03
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.22,
+      "probabilities": {
+        "19": 0.39,
+        "20": 0.61
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.61,
+      "probabilities": {
+        "19": 0.19,
+        "20": 0.81
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.02
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.59,
+      "probabilities": {
+        "19": 0.21,
+        "20": 0.79
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.68,
+      "probabilities": {
+        "19": 0.16,
+        "20": 0.84
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1779,
+    "output_tokens": 534
+  }
+}
+
+=== Request 5 ===
+{
+  "state": {
+    "filename": "logged_jev.py",
+    "unit": "LoggedJev.__exit__",
+    "code": "    def __exit__(self, *exc_info):\n        self.client.close()"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does the clearest instance start?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does that same instance end?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does the clearest instance start?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does that same instance end?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does the clearest instance start?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does that same instance end?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does the clearest instance start?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does that same instance end?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does the clearest instance start?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does that same instance end?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does the clearest instance start?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does that same instance end?",
+      "criteria": {
+        "22": "    def __exit__(self, *exc_info):",
+        "23": "        self.client.close()"
+      }
+    }
+  }
+}
+
+=== Response 5 (req_01a0f5323d927c50b1049e85173dd778) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.24
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "22",
+      "confidence": 0.28,
+      "probabilities": {
+        "22": 0.64,
+        "23": 0.36
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "22",
+      "confidence": 0.11,
+      "probabilities": {
+        "22": 0.56,
+        "23": 0.44
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.11
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.95,
+      "probabilities": {
+        "22": 0.03,
+        "23": 0.97
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.9,
+      "probabilities": {
+        "22": 0.05,
+        "23": 0.95
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.52,
+      "probabilities": {
+        "22": 0.24,
+        "23": 0.76
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.67,
+      "probabilities": {
+        "22": 0.16,
+        "23": 0.84
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.02
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.51,
+      "probabilities": {
+        "22": 0.24,
+        "23": 0.76
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.54,
+      "probabilities": {
+        "22": 0.23,
+        "23": 0.77
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.1
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "22",
+      "confidence": 0.61,
+      "probabilities": {
+        "22": 0.81,
+        "23": 0.19
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.42,
+      "probabilities": {
+        "22": 0.29,
+        "23": 0.71
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.08
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.86,
+      "probabilities": {
+        "22": 0.07,
+        "23": 0.93
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.84,
+      "probabilities": {
+        "22": 0.08,
+        "23": 0.92
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1857,
+    "output_tokens": 534
+  }
+}
+
+=== Request 6 ===
+{
+  "state": {
+    "filename": "logged_jev.py",
+    "unit": "LoggedJev.system_one",
+    "code": "    def system_one(self, *args, **kwargs):\n        response = self.client.system_one(*args, **kwargs)\n        self.calls += 1\n\n        http = response.raw_http_response\n        self.logger.log(\n            self.run_name,\n            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"\n            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",\n        )\n        return response"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does the clearest instance start?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line does that same instance end?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does the clearest instance start?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line does that same instance end?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does the clearest instance start?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line does that same instance end?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does the clearest instance start?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line does that same instance end?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does the clearest instance start?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line does that same instance end?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does the clearest instance start?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line does that same instance end?",
+      "criteria": {
+        "25": "    def system_one(self, *args, **kwargs):",
+        "26": "        response = self.client.system_one(*args, **kwargs)",
+        "27": "        self.calls += 1",
+        "29": "        http = response.raw_http_response",
+        "30": "        self.logger.log(",
+        "31": "            self.run_name,",
+        "32": "            f\"=== Request {self.calls} ===\\n{pretty(http.request.content)}\\n\\n\"",
+        "33": "            f\"=== Response {self.calls} ({response.request_id}) ===\\n{pretty(http.text)}\",",
+        "34": "        )",
+        "35": "        return response"
+      }
+    }
+  }
+}
+
+=== Response 6 (req_01a0f5323e57767a9293c6f35d0d3ea4) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.54
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.47,
+      "probabilities": {
+        "25": 0.52,
+        "29": 0.38,
+        "26": 0.03,
+        "27": 0.01,
+        "33": 0.02,
+        "34": 0.0,
+        "30": 0.01,
+        "31": 0.01,
+        "32": 0.01,
+        "35": 0.01
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.24,
+      "probabilities": {
+        "25": 0.32,
+        "29": 0.28,
+        "26": 0.07,
+        "27": 0.03,
+        "33": 0.05,
+        "34": 0.03,
+        "30": 0.03,
+        "31": 0.02,
+        "32": 0.03,
+        "35": 0.14
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.44
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "30",
+      "confidence": 0.48,
+      "probabilities": {
+        "25": 0.0,
+        "29": 0.0,
+        "26": 0.01,
+        "27": 0.45,
+        "30": 0.54,
+        "34": 0.0,
+        "33": 0.0,
+        "31": 0.0,
+        "32": 0.0,
+        "35": 0.0
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "34",
+      "confidence": 0.35,
+      "probabilities": {
+        "25": 0.0,
+        "29": 0.01,
+        "26": 0.01,
+        "27": 0.14,
+        "33": 0.1,
+        "34": 0.39999999999999997,
+        "30": 0.19,
+        "31": 0.02,
+        "32": 0.01,
+        "35": 0.12
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.02
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "32",
+      "confidence": 0.26,
+      "probabilities": {
+        "25": 0.24,
+        "29": 0.03,
+        "26": 0.05,
+        "27": 0.04,
+        "33": 0.12,
+        "34": 0.02,
+        "30": 0.04,
+        "31": 0.02,
+        "32": 0.33,
+        "35": 0.11
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "35",
+      "confidence": 0.25,
+      "probabilities": {
+        "25": 0.31,
+        "29": 0.02,
+        "26": 0.04,
+        "27": 0.06,
+        "33": 0.05,
+        "34": 0.07,
+        "30": 0.03,
+        "31": 0.02,
+        "32": 0.06,
+        "35": 0.34
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.29
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "32",
+      "confidence": 0.65,
+      "probabilities": {
+        "25": 0.01,
+        "29": 0.01,
+        "26": 0.0,
+        "27": 0.08,
+        "30": 0.03,
+        "34": 0.0,
+        "33": 0.16,
+        "31": 0.02,
+        "32": 0.68,
+        "35": 0.0
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "32",
+      "confidence": 0.33,
+      "probabilities": {
+        "25": 0.01,
+        "29": 0.02,
+        "26": 0.01,
+        "27": 0.04,
+        "33": 0.29,
+        "34": 0.11,
+        "30": 0.06,
+        "31": 0.04,
+        "32": 0.4,
+        "35": 0.02
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.21
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "32",
+      "confidence": 0.2,
+      "probabilities": {
+        "25": 0.28,
+        "29": 0.02,
+        "26": 0.06,
+        "27": 0.01,
+        "33": 0.18,
+        "34": 0.01,
+        "30": 0.05,
+        "31": 0.09,
+        "32": 0.29000000000000004,
+        "35": 0.01
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "33",
+      "confidence": 0.21,
+      "probabilities": {
+        "25": 0.08,
+        "29": 0.03,
+        "26": 0.06,
+        "27": 0.02,
+        "30": 0.06,
+        "34": 0.12,
+        "33": 0.29,
+        "31": 0.07,
+        "32": 0.18,
+        "35": 0.09
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.18
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "32",
+      "confidence": 0.29,
+      "probabilities": {
+        "25": 0.02,
+        "29": 0.33,
+        "26": 0.07,
+        "27": 0.01,
+        "33": 0.16,
+        "34": 0.0,
+        "30": 0.03,
+        "31": 0.01,
+        "32": 0.36,
+        "35": 0.01
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "32",
+      "confidence": 0.18,
+      "probabilities": {
+        "25": 0.02,
+        "29": 0.21,
+        "26": 0.13,
+        "27": 0.03,
+        "33": 0.17,
+        "34": 0.03,
+        "30": 0.05,
+        "31": 0.02,
+        "32": 0.26,
+        "35": 0.08
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 4102,
+    "output_tokens": 1302
+  }
+}
+

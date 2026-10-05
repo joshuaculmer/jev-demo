@@ -1,0 +1,33 @@
+{
+  "filters": [
+    {
+      "source": "jev_linter_files",
+      "checked": [
+        "logged_jev.py"
+      ],
+      "passed": [],
+      "findings": [
+        {
+          "file": "logged_jev.py",
+          "start_line": 6,
+          "end_line": 7,
+          "rule": "Poor naming",
+          "source": "jev_linter_files",
+          "message": "`pretty`: the function, its parameters, or its variables have vague, misleading, or single-letter names",
+          "probability": 0.53,
+          "related": []
+        },
+        {
+          "file": "logged_jev.py",
+          "start_line": 25,
+          "end_line": 25,
+          "rule": "Poor naming",
+          "source": "jev_linter_files",
+          "message": "`LoggedJev.system_one`: the function, its parameters, or its variables have vague, misleading, or single-letter names",
+          "probability": 0.54,
+          "related": []
+        }
+      ]
+    }
+  ]
+}

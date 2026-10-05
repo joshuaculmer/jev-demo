@@ -1,0 +1,2598 @@
+=== Request 1 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger",
+    "code": "class RawLogger:\n    \"\"\"Owns the files under one output directory.\"\"\"\n\n    def __init__(self, directory):\n        self.directory = Path(directory)\n\n    def log_path(self, run_name):\n        return self.directory / f\"{run_name}.txt\"\n\n    def log(self, run_name, raw_text):\n        \"\"\"Append raw text to the run's log.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:\n            file.write(raw_text + \"\\n\\n\")\n\n    def save(self, filename, content):\n        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        path = self.directory / filename\n        path.write_text(content, encoding=\"utf-8\")\n        return path"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "God class": {
+      "type": "noul",
+      "instructions": "Does `code`, the class `unit`, have the code smell 'God class', meaning the class holds many unrelated responsibilities?"
+    }
+  }
+}
+
+=== Response 1 (req_01a0f53aec06785a848751394e7593eb) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "God class": {
+      "type": "noul",
+      "noul": 0.1
+    }
+  },
+  "usage": {
+    "input_tokens": 501,
+    "output_tokens": 21
+  }
+}
+
+=== Request 2 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.__init__",
+    "code": "    def __init__(self, directory):\n        self.directory = Path(directory)"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    }
+  }
+}
+
+=== Response 2 (req_01a0f53aec7e7ed18b2fcc3aa0634bbb) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.09
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.31,
+      "probabilities": {
+        "8": 0.35,
+        "7": 0.65
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.38,
+      "probabilities": {
+        "8": 0.69,
+        "7": 0.31
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.1
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.6,
+      "probabilities": {
+        "8": 0.8,
+        "7": 0.2
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.81,
+      "probabilities": {
+        "8": 0.91,
+        "7": 0.09
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.59,
+      "probabilities": {
+        "8": 0.79,
+        "7": 0.21
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.71,
+      "probabilities": {
+        "8": 0.85,
+        "7": 0.15
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.03
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.6,
+      "probabilities": {
+        "8": 0.8,
+        "7": 0.2
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.61,
+      "probabilities": {
+        "8": 0.81,
+        "7": 0.19
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.42
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.52,
+      "probabilities": {
+        "8": 0.24,
+        "7": 0.76
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.61,
+      "probabilities": {
+        "8": 0.81,
+        "7": 0.19
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.06
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.86,
+      "probabilities": {
+        "8": 0.93,
+        "7": 0.07
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.8,
+      "probabilities": {
+        "8": 0.9,
+        "7": 0.1
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1879,
+    "output_tokens": 498
+  }
+}
+
+=== Request 3 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.log_path",
+    "code": "    def log_path(self, run_name):\n        return self.directory / f\"{run_name}.txt\""
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    }
+  }
+}
+
+=== Response 3 (req_01a0f53aecff715999fc7a809fab85fb) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.14
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "10",
+      "confidence": 0.15,
+      "probabilities": {
+        "10": 0.57,
+        "11": 0.43
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.29,
+      "probabilities": {
+        "10": 0.35,
+        "11": 0.65
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.04
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.5,
+      "probabilities": {
+        "10": 0.25,
+        "11": 0.75
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.82,
+      "probabilities": {
+        "10": 0.09,
+        "11": 0.91
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.18,
+      "probabilities": {
+        "10": 0.41,
+        "11": 0.59
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.68,
+      "probabilities": {
+        "10": 0.16,
+        "11": 0.84
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.32
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.99,
+      "probabilities": {
+        "10": 0.0,
+        "11": 1.0
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.98,
+      "probabilities": {
+        "10": 0.01,
+        "11": 0.99
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.42
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "10",
+      "confidence": 0.41,
+      "probabilities": {
+        "10": 0.7,
+        "11": 0.3
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.66,
+      "probabilities": {
+        "10": 0.17,
+        "11": 0.83
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.11
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.88,
+      "probabilities": {
+        "10": 0.06,
+        "11": 0.94
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.72,
+      "probabilities": {
+        "10": 0.14,
+        "11": 0.86
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1967,
+    "output_tokens": 534
+  }
+}
+
+=== Request 4 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.log",
+    "code": "    def log(self, run_name, raw_text):\n        \"\"\"Append raw text to the run's log.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:\n            file.write(raw_text + \"\\n\\n\")"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    }
+  }
+}
+
+=== Response 4 (req_01a0f53aed7a7c55a6cfbf09b3c3517c) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.16,
+      "probabilities": {
+        "18": 0.33,
+        "14": 0.04,
+        "17": 0.32,
+        "16": 0.05,
+        "13": 0.26
+      }
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "14",
+      "confidence": 0.99,
+      "probabilities": {
+        "18": 0.0,
+        "14": 1.0,
+        "17": 0.0,
+        "13": 0.0,
+        "16": 0.0
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.46
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.54
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.59,
+      "probabilities": {
+        "18": 0.67,
+        "14": 0.03,
+        "17": 0.03,
+        "13": 0.25,
+        "16": 0.02
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.23,
+      "probabilities": {
+        "18": 0.23,
+        "14": 0.03,
+        "17": 0.33,
+        "13": 0.02,
+        "16": 0.39
+      }
+    },
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.14
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "13",
+      "confidence": 0.23,
+      "probabilities": {
+        "18": 0.19,
+        "14": 0.02,
+        "17": 0.27,
+        "13": 0.38,
+        "16": 0.14
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.08
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.61,
+      "probabilities": {
+        "18": 0.21,
+        "14": 0.01,
+        "17": 0.03,
+        "16": 0.7,
+        "13": 0.05
+      }
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "13",
+      "confidence": 0.86,
+      "probabilities": {
+        "18": 0.09,
+        "14": 0.0,
+        "17": 0.01,
+        "16": 0.0,
+        "13": 0.9
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.17
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.87,
+      "probabilities": {
+        "18": 0.9,
+        "14": 0.02,
+        "17": 0.02,
+        "13": 0.01,
+        "16": 0.05
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "14",
+      "confidence": 0.98,
+      "probabilities": {
+        "18": 0.01,
+        "14": 0.98,
+        "17": 0.0,
+        "13": 0.01,
+        "16": 0.0
+      }
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.42,
+      "probabilities": {
+        "18": 0.1,
+        "14": 0.01,
+        "17": 0.34,
+        "13": 0.01,
+        "16": 0.54
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.51
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.94,
+      "probabilities": {
+        "18": 0.96,
+        "14": 0.0,
+        "17": 0.03,
+        "13": 0.0,
+        "16": 0.01
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.89,
+      "probabilities": {
+        "18": 0.91,
+        "14": 0.01,
+        "17": 0.07,
+        "13": 0.0,
+        "16": 0.01
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 2971,
+    "output_tokens": 822
+  }
+}
+
+=== Request 5 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.save",
+    "code": "    def save(self, filename, content):\n        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        path = self.directory / filename\n        path.write_text(content, encoding=\"utf-8\")\n        return path"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    }
+  }
+}
+
+=== Response 5 (req_01a0f53aee1d70138e1ebbdd327f6ac1) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.12
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.29,
+      "probabilities": {
+        "24": 0.15,
+        "25": 0.13,
+        "20": 0.41,
+        "23": 0.09,
+        "21": 0.05,
+        "26": 0.17
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.08,
+      "probabilities": {
+        "24": 0.22,
+        "25": 0.16,
+        "20": 0.23,
+        "23": 0.08,
+        "21": 0.07,
+        "26": 0.24000000000000002
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.08
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.59,
+      "probabilities": {
+        "24": 0.0,
+        "25": 0.29,
+        "20": 0.04,
+        "23": 0.66,
+        "21": 0.01,
+        "26": 0.0
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.67,
+      "probabilities": {
+        "24": 0.01,
+        "25": 0.72,
+        "20": 0.01,
+        "23": 0.08,
+        "21": 0.03,
+        "26": 0.15
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.57
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "21",
+      "confidence": 0.99,
+      "probabilities": {
+        "24": 0.0,
+        "25": 0.0,
+        "20": 0.0,
+        "23": 0.0,
+        "21": 1.0,
+        "26": 0.0
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "21",
+      "confidence": 0.96,
+      "probabilities": {
+        "24": 0.01,
+        "25": 0.0,
+        "20": 0.01,
+        "23": 0.01,
+        "21": 0.96,
+        "26": 0.01
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.18
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.89,
+      "probabilities": {
+        "24": 0.0,
+        "25": 0.91,
+        "20": 0.0,
+        "23": 0.07,
+        "21": 0.01,
+        "26": 0.01
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.91,
+      "probabilities": {
+        "24": 0.01,
+        "25": 0.93,
+        "20": 0.0,
+        "23": 0.03,
+        "21": 0.01,
+        "26": 0.01
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.38
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.88,
+      "probabilities": {
+        "24": 0.04,
+        "25": 0.04,
+        "20": 0.91,
+        "23": 0.0,
+        "21": 0.0,
+        "26": 0.01
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.24,
+      "probabilities": {
+        "24": 0.14,
+        "25": 0.36,
+        "20": 0.19,
+        "23": 0.03,
+        "21": 0.05,
+        "26": 0.23
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.21
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.31,
+      "probabilities": {
+        "24": 0.11,
+        "25": 0.43,
+        "20": 0.01,
+        "23": 0.42,
+        "21": 0.01,
+        "26": 0.02
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.3,
+      "probabilities": {
+        "24": 0.14,
+        "25": 0.43,
+        "20": 0.01,
+        "23": 0.26,
+        "21": 0.02,
+        "26": 0.14
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 3025,
+    "output_tokens": 918
+  }
+}
+
+=== Request 6 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger",
+    "code": "class RawLogger:\n    \"\"\"Owns the files under one output directory.\"\"\"\n\n    def __init__(self, directory):\n        self.directory = Path(directory)\n\n    def log_path(self, run_name):\n        return self.directory / f\"{run_name}.txt\"\n\n    def log(self, run_name, raw_text):\n        \"\"\"Append raw text to the run's log.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:\n            file.write(raw_text + \"\\n\\n\")\n\n    def save(self, filename, content):\n        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        path = self.directory / filename\n        path.write_text(content, encoding=\"utf-8\")\n        return path"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "God class": {
+      "type": "noul",
+      "instructions": "Does `code`, the class `unit`, have the code smell 'God class', meaning the class holds many unrelated responsibilities?"
+    }
+  }
+}
+
+=== Response 6 (req_01a0f53aeeaf7dd6b7acb800bb260420) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "God class": {
+      "type": "noul",
+      "noul": 0.09
+    }
+  },
+  "usage": {
+    "input_tokens": 501,
+    "output_tokens": 21
+  }
+}
+
+=== Request 7 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.__init__",
+    "code": "    def __init__(self, directory):\n        self.directory = Path(directory)"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "7": "    def __init__(self, directory):",
+        "8": "        self.directory = Path(directory)"
+      }
+    }
+  }
+}
+
+=== Response 7 (req_01a0f53aefd579d8ac687c7bf409c8b6) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.77,
+      "probabilities": {
+        "8": 0.89,
+        "7": 0.11
+      }
+    },
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.1
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.27,
+      "probabilities": {
+        "8": 0.36,
+        "7": 0.64
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.86,
+      "probabilities": {
+        "8": 0.93,
+        "7": 0.07
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.43,
+      "probabilities": {
+        "8": 0.71,
+        "7": 0.29
+      }
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.58,
+      "probabilities": {
+        "8": 0.79,
+        "7": 0.21
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.71,
+      "probabilities": {
+        "8": 0.86,
+        "7": 0.14
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.46
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.59,
+      "probabilities": {
+        "8": 0.79,
+        "7": 0.21
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.06
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.77,
+      "probabilities": {
+        "8": 0.89,
+        "7": 0.11
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.03
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.62,
+      "probabilities": {
+        "8": 0.81,
+        "7": 0.19
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.63,
+      "probabilities": {
+        "8": 0.81,
+        "7": 0.19
+      }
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "7",
+      "confidence": 0.61,
+      "probabilities": {
+        "8": 0.2,
+        "7": 0.8
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.1
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "8",
+      "confidence": 0.65,
+      "probabilities": {
+        "8": 0.82,
+        "7": 0.18
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1879,
+    "output_tokens": 498
+  }
+}
+
+=== Request 8 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.log_path",
+    "code": "    def log_path(self, run_name):\n        return self.directory / f\"{run_name}.txt\""
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "10": "    def log_path(self, run_name):",
+        "11": "        return self.directory / f\"{run_name}.txt\""
+      }
+    }
+  }
+}
+
+=== Response 8 (req_01a0f53af09170f19e7218c99cea62e7) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "10",
+      "confidence": 0.1,
+      "probabilities": {
+        "10": 0.55,
+        "11": 0.45
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.29,
+      "probabilities": {
+        "10": 0.36,
+        "11": 0.64
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.04
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.01
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.66,
+      "probabilities": {
+        "10": 0.17,
+        "11": 0.83
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.42
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.1
+    },
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.12
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.57,
+      "probabilities": {
+        "10": 0.22,
+        "11": 0.78
+      }
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.16,
+      "probabilities": {
+        "10": 0.42,
+        "11": 0.58
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.31
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.99,
+      "probabilities": {
+        "10": 0.0,
+        "11": 1.0
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.98,
+      "probabilities": {
+        "10": 0.01,
+        "11": 0.99
+      }
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.85,
+      "probabilities": {
+        "10": 0.07,
+        "11": 0.93
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.85,
+      "probabilities": {
+        "10": 0.08,
+        "11": 0.92
+      }
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "10",
+      "confidence": 0.35,
+      "probabilities": {
+        "10": 0.68,
+        "11": 0.32
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.65,
+      "probabilities": {
+        "10": 0.18,
+        "11": 0.82
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "11",
+      "confidence": 0.73,
+      "probabilities": {
+        "10": 0.14,
+        "11": 0.86
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1967,
+    "output_tokens": 534
+  }
+}
+
+=== Request 9 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.log",
+    "code": "    def log(self, run_name, raw_text):\n        \"\"\"Append raw text to the run's log.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:\n            file.write(raw_text + \"\\n\\n\")"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "13": "    def log(self, run_name, raw_text):",
+        "14": "        \"\"\"Append raw text to the run's log.\"\"\"",
+        "16": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "17": "        with open(self.log_path(run_name), \"a\", encoding=\"utf-8\") as file:",
+        "18": "            file.write(raw_text + \"\\n\\n\")"
+      }
+    }
+  }
+}
+
+=== Response 9 (req_01a0f53af1387b8792c2fec71b2f5705) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.15
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.17,
+      "probabilities": {
+        "14": 0.02,
+        "18": 0.18,
+        "16": 0.15,
+        "17": 0.33,
+        "13": 0.32
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "13",
+      "confidence": 0.16,
+      "probabilities": {
+        "14": 0.03,
+        "18": 0.32,
+        "17": 0.27,
+        "16": 0.05,
+        "13": 0.33
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.07
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.65,
+      "probabilities": {
+        "17": 0.03,
+        "18": 0.2,
+        "14": 0.01,
+        "16": 0.72,
+        "13": 0.04
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.83,
+      "probabilities": {
+        "17": 0.02,
+        "18": 0.87,
+        "14": 0.03,
+        "16": 0.07,
+        "13": 0.01
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.51
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "14",
+      "confidence": 0.99,
+      "probabilities": {
+        "14": 1.0,
+        "18": 0.0,
+        "17": 0.0,
+        "16": 0.0,
+        "13": 0.0
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "14",
+      "confidence": 0.98,
+      "probabilities": {
+        "14": 0.99,
+        "18": 0.0,
+        "16": 0.0,
+        "17": 0.0,
+        "13": 0.01
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.44
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.95,
+      "probabilities": {
+        "14": 0.0,
+        "18": 0.97,
+        "16": 0.01,
+        "17": 0.02,
+        "13": 0.0
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.89,
+      "probabilities": {
+        "14": 0.01,
+        "18": 0.91,
+        "16": 0.02,
+        "17": 0.06,
+        "13": 0.0
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.51
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "13",
+      "confidence": 0.86,
+      "probabilities": {
+        "14": 0.0,
+        "18": 0.09,
+        "16": 0.0,
+        "17": 0.01,
+        "13": 0.9
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "18",
+      "confidence": 0.59,
+      "probabilities": {
+        "17": 0.03,
+        "18": 0.67,
+        "14": 0.03,
+        "16": 0.02,
+        "13": 0.25
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.15
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "16",
+      "confidence": 0.38,
+      "probabilities": {
+        "16": 0.51,
+        "18": 0.12,
+        "17": 0.35,
+        "14": 0.01,
+        "13": 0.01
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "17",
+      "confidence": 0.21,
+      "probabilities": {
+        "17": 0.36,
+        "18": 0.25,
+        "14": 0.05,
+        "16": 0.31,
+        "13": 0.03
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 2971,
+    "output_tokens": 822
+  }
+}
+
+=== Request 10 ===
+{
+  "state": {
+    "filename": "raw_logger.py",
+    "unit": "RawLogger.save",
+    "code": "    def save(self, filename, content):\n        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"\n\n        self.directory.mkdir(parents=True, exist_ok=True)\n        path = self.directory / filename\n        path.write_text(content, encoding=\"utf-8\")\n        return path"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "Poor naming": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names?"
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Poor naming', meaning the function, its parameters, or its variables have vague, misleading, or single-letter names. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state?"
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Side effects in unexpected places', meaning its name suggests a pure calculation or query, but it prints, writes files, or changes state. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why?"
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Excessive comments', meaning its comments restate what the code plainly does instead of explaining why. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant?"
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Magic numbers', meaning it uses literal numbers or strings whose meaning a reader can't tell without a named constant. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear?"
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Primitive obsession', meaning it passes raw strings, tuples, or dicts where a small class or type would make the meaning clear. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "instructions": "Does `code`, the function `unit`, have the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation?"
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does the clearest instance start?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "instructions": "Assume `code` has the code smell 'Law of Demeter', meaning it calls behavior through a collaborator's collaborator, such as `order.customer.wallet.charge()`, instead of asking its direct collaborators. Reading data the function needs from a returned object is not a violation. On which line of `code` does that same instance end?",
+      "criteria": {
+        "20": "    def save(self, filename, content):",
+        "21": "        \"\"\"Write content to <directory>/<filename>, replacing any earlier file.\"\"\"",
+        "23": "        self.directory.mkdir(parents=True, exist_ok=True)",
+        "24": "        path = self.directory / filename",
+        "25": "        path.write_text(content, encoding=\"utf-8\")",
+        "26": "        return path"
+      }
+    }
+  }
+}
+
+=== Response 10 (req_01a0f53af1bb75fc8bcc92da3972ceac) ===
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "Poor naming": {
+      "type": "noul",
+      "noul": 0.12
+    },
+    "Poor naming: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.32,
+      "probabilities": {
+        "23": 0.08,
+        "26": 0.18,
+        "24": 0.15,
+        "25": 0.12,
+        "21": 0.04,
+        "20": 0.43
+      }
+    },
+    "Poor naming: end": {
+      "type": "choice",
+      "choice": "26",
+      "confidence": 0.1,
+      "probabilities": {
+        "26": 0.25,
+        "23": 0.08,
+        "24": 0.2,
+        "25": 0.17,
+        "21": 0.07,
+        "20": 0.23
+      }
+    },
+    "Side effects in unexpected places": {
+      "type": "noul",
+      "noul": 0.08
+    },
+    "Side effects in unexpected places: start": {
+      "type": "choice",
+      "choice": "23",
+      "confidence": 0.57,
+      "probabilities": {
+        "23": 0.64,
+        "26": 0.0,
+        "24": 0.0,
+        "25": 0.31,
+        "21": 0.01,
+        "20": 0.04
+      }
+    },
+    "Side effects in unexpected places: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.65,
+      "probabilities": {
+        "23": 0.09,
+        "26": 0.15,
+        "24": 0.01,
+        "25": 0.7,
+        "21": 0.04,
+        "20": 0.01
+      }
+    },
+    "Excessive comments": {
+      "type": "noul",
+      "noul": 0.54
+    },
+    "Excessive comments: start": {
+      "type": "choice",
+      "choice": "21",
+      "confidence": 0.99,
+      "probabilities": {
+        "26": 0.0,
+        "23": 0.0,
+        "24": 0.0,
+        "25": 0.0,
+        "21": 1.0,
+        "20": 0.0
+      }
+    },
+    "Excessive comments: end": {
+      "type": "choice",
+      "choice": "21",
+      "confidence": 0.97,
+      "probabilities": {
+        "23": 0.0,
+        "26": 0.01,
+        "24": 0.0,
+        "25": 0.0,
+        "21": 0.98,
+        "20": 0.01
+      }
+    },
+    "Magic numbers": {
+      "type": "noul",
+      "noul": 0.18
+    },
+    "Magic numbers: start": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.9,
+      "probabilities": {
+        "23": 0.07,
+        "26": 0.01,
+        "24": 0.0,
+        "25": 0.91,
+        "21": 0.01,
+        "20": 0.0
+      }
+    },
+    "Magic numbers: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.91,
+      "probabilities": {
+        "26": 0.02,
+        "23": 0.03,
+        "24": 0.01,
+        "25": 0.93,
+        "21": 0.01,
+        "20": 0.0
+      }
+    },
+    "Primitive obsession": {
+      "type": "noul",
+      "noul": 0.35
+    },
+    "Primitive obsession: start": {
+      "type": "choice",
+      "choice": "20",
+      "confidence": 0.9,
+      "probabilities": {
+        "23": 0.0,
+        "26": 0.0,
+        "24": 0.04,
+        "25": 0.03,
+        "21": 0.0,
+        "20": 0.93
+      }
+    },
+    "Primitive obsession: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.33,
+      "probabilities": {
+        "23": 0.03,
+        "26": 0.24,
+        "24": 0.1,
+        "25": 0.44,
+        "21": 0.04,
+        "20": 0.15
+      }
+    },
+    "Law of Demeter": {
+      "type": "noul",
+      "noul": 0.2
+    },
+    "Law of Demeter: start": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.37,
+      "probabilities": {
+        "23": 0.36,
+        "26": 0.03,
+        "24": 0.12,
+        "25": 0.47,
+        "21": 0.01,
+        "20": 0.01
+      }
+    },
+    "Law of Demeter: end": {
+      "type": "choice",
+      "choice": "25",
+      "confidence": 0.33,
+      "probabilities": {
+        "26": 0.16,
+        "23": 0.24,
+        "24": 0.12,
+        "25": 0.44,
+        "21": 0.03,
+        "20": 0.01
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 3025,
+    "output_tokens": 918
+  }
+}
+
