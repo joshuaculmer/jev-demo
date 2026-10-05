@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 from jev_linter.findings import FilterResult, Finding, Location
+from jev_linter.progress import SILENT_PROGRESS, Progress
 
 # Ruff exits with 1 when it finds violations and higher when it fails to run.
 
@@ -30,13 +31,18 @@ def run_ruff(*args: str) -> str:
 class RuffFilter:
     source = "ruff_filter"
 
-    def run(self, files: list[Path]) -> FilterResult:
-        if not files:
-            return FilterResult.from_findings(self.source, files, [])
+    def __init__(self, progress: Progress = SILENT_PROGRESS) -> None:
+        self.progress = progress
 
-        output = run_ruff("check", "--output-format", "json", "--force-exclude", *map(str, files))
+    def run(self, files: list[Path]) -> FilterResult:
+        self.progress.start(self.source, 1)
+        self.progress.step(f"ruff check on {len(files)} files")
+
+        output = run_ruff("check", "--output-format", "json", "--force-exclude", *map(str, files)) if files else "[]"
         findings = [self._to_finding(violation) for violation in json.loads(output)]
-        return FilterResult.from_findings(self.source, files, findings)
+        result = FilterResult.from_findings(self.source, files, findings)
+        self.progress.finish(result)
+        return result
 
     def _to_finding(self, violation: dict) -> Finding:
         return Finding(

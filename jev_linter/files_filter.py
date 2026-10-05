@@ -4,6 +4,7 @@ from typesafe_sdk import Noul, Question
 
 from jev_client import JevClient
 from jev_linter.findings import FilterResult, Finding
+from jev_linter.progress import SILENT_PROGRESS, Progress, UsageCounter
 from jev_linter.questions import (
     THRESHOLD,
     read_span,
@@ -40,14 +41,22 @@ class JevFilesFilter:
 
     source = "jev_linter_files"
 
-    def __init__(self, jev: JevClient) -> None:
-        self.jev = jev
+    def __init__(self, jev: JevClient, progress: Progress = SILENT_PROGRESS) -> None:
+        self.jev = UsageCounter(jev)
+        self.progress = progress
 
     def run(self, files: list[Path]) -> FilterResult:
-        findings = [finding for file in files for unit in extract_units(file) for finding in self.check(unit)]
-        return FilterResult.from_findings(self.source, files, findings)
+        usage_before = self.jev.usage
+        units = [unit for file in files for unit in extract_units(file)]
+        self.progress.start(self.source, len(units))
+
+        findings = [finding for unit in units for finding in self.check(unit)]
+        result = FilterResult.from_findings(self.source, files, findings, usage=self.jev.usage - usage_before)
+        self.progress.finish(result)
+        return result
 
     def check(self, unit: Unit) -> list[Finding]:
+        self.progress.step(f"{unit.file.name}  {unit.name}")
         smells = CLASS_SMELLS if unit.kind == "class" else FUNCTION_SMELLS
         response = self.jev.system_one(unit_state(unit), smell_questions(unit, smells))
         return [

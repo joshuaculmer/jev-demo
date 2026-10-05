@@ -8,6 +8,7 @@ from typesafe_sdk import Noul, Question
 
 from jev_client import JevClient
 from jev_linter.findings import FilterResult, Finding
+from jev_linter.progress import SILENT_PROGRESS, Progress, UsageCounter
 from jev_linter.project_graph import CallEdge, Construction, KnowledgePair, build_graph
 from jev_linter.questions import (
     THRESHOLD,
@@ -109,25 +110,40 @@ class JevProjectFilter:
 
     source = "jev_linter_project"
 
-    def __init__(self, jev: JevClient) -> None:
-        self.jev = jev
+    def __init__(self, jev: JevClient, progress: Progress = SILENT_PROGRESS) -> None:
+        self.jev = UsageCounter(jev)
+        self.progress = progress
 
     def run(self, files: list[Path]) -> FilterResult:
+        usage_before = self.jev.usage
         graph = build_graph(files)
-        duplicates = [duplicate for pair in graph.knowledge_pairs if (duplicate := self.check_pair(pair))]
+        constructions = group_by_unit(graph.constructions)
+        self.progress.start(self.source, len(graph.knowledge_pairs) + len(graph.edges) + len(constructions))
+        self.progress.note(graph.summary())
 
+        duplicates = [duplicate for pair in graph.knowledge_pairs if (duplicate := self.check_pair(pair))]
         findings = [finding for duplicate in duplicates for finding in duplicate.findings]
         findings += shotgun_surgery(duplicates, self.source)
         findings += [finding for edge in graph.edges for finding in self.check_edge(edge)]
         findings += [
             finding
-            for unit, constructions in group_by_unit(graph.constructions).items()
-            for finding in self.check_constructions(unit, constructions)
+            for unit, unit_constructions in constructions.items()
+            for finding in self.check_constructions(unit, unit_constructions)
         ]
-        return FilterResult.from_findings(self.source, files, findings, notes=(graph.summary(),))
+
+        result = FilterResult.from_findings(
+            self.source,
+            files,
+            findings,
+            notes=(graph.summary(),),
+            usage=self.jev.usage - usage_before,
+        )
+        self.progress.finish(result)
+        return result
 
     def check_pair(self, pair: KnowledgePair) -> Duplicate | None:
         a, b = pair.a, pair.b
+        self.progress.step(f"pair  {a.name} <> {b.name}")
         questions: dict[str, Question] = {smell: Noul(instructions=text) for smell, text in PAIR_QUESTIONS.items()}
         questions |= span_questions(f"{DUPLICATED_KNOWLEDGE} in a", SAME_KNOWLEDGE, "`a.code`", span_lines(a))
         questions |= span_questions(f"{DUPLICATED_KNOWLEDGE} in b", SAME_KNOWLEDGE, "`b.code`", span_lines(b))
@@ -152,7 +168,8 @@ class JevProjectFilter:
 
     def check_edge(self, edge: CallEdge) -> list[Finding]:
         caller, callee = edge.caller, edge.callee
-        smells = [smell for smell in EDGE_QUESTIONS if smell != FEATURE_ENVY or calls_other_class(edge)]
+        self.progress.step(f"edge  {caller.name} -> {callee.name}")
+        smells =[smell for smell in EDGE_QUESTIONS if smell != FEATURE_ENVY or calls_other_class(edge)]
         questions = {smell: EDGE_QUESTIONS[smell] for smell in smells} | VALIDATION_QUESTIONS
         response = self.jev.system_one(
             {"caller": unit_state(caller, with_contract=True), "callee": unit_state(callee, with_contract=True)},
@@ -176,6 +193,7 @@ class JevProjectFilter:
         ]
 
     def check_constructions(self, unit: Unit, constructions: list[Construction]) -> list[Finding]:
+        self.progress.step(f"constructions  {unit.name}")
         question_ids = {construction: f"{MISSING_INJECTION}: {construction.class_name}" for construction in constructions}
         response = self.jev.system_one(
             unit_state(unit, with_contract=True),

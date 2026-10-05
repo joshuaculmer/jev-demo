@@ -29,12 +29,39 @@ class Finding:
 
 
 @dataclass(frozen=True)
+class Usage:
+    """Jev requests and tokens spent by one filter run."""
+
+    requests: int = 0
+    input_tokens: int = 0
+    output_tokens: int = 0
+
+    def __add__(self, other: Usage) -> Usage:
+        return Usage(
+            self.requests + other.requests,
+            self.input_tokens + other.input_tokens,
+            self.output_tokens + other.output_tokens,
+        )
+
+    def __sub__(self, other: Usage) -> Usage:
+        return Usage(
+            self.requests - other.requests,
+            self.input_tokens - other.input_tokens,
+            self.output_tokens - other.output_tokens,
+        )
+
+
+NO_USAGE = Usage()
+
+
+@dataclass(frozen=True)
 class FilterResult:
     source: str
     checked: list[Path]
     passed: list[Path]
     findings: list[Finding]
     notes: tuple[str, ...] = ()
+    usage: Usage = NO_USAGE
 
     @classmethod
     def from_findings(
@@ -43,12 +70,13 @@ class FilterResult:
         checked: list[Path],
         findings: list[Finding],
         notes: tuple[str, ...] = (),
+        usage: Usage = NO_USAGE,
     ) -> FilterResult:
         """A checked file passes when no finding touches it."""
 
         failed = {file.resolve() for finding in findings for file in finding.files}
         passed = [file for file in checked if file.resolve() not in failed]
-        return cls(source, checked, passed, findings, notes)
+        return cls(source, checked, passed, findings, notes, usage)
 
 
 class Filter(Protocol):
